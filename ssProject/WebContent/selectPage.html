@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>선택지 선택</title>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="https://dl.dropboxusercontent.com/u/86701580/mypersonalcdn/renda/renda-icon-font.css">
+<style>
+.navbar-brand {
+	padding: 0px;
+}
+
+.container {
+	margin-top: 100px;
+	float: none;
+}
+
+.panel-body {
+	font-size: 20px;
+}
+
+.label.label-danger {
+	margin-right: 10px;
+}
+
+.nav.nav-pills.nav-stacked.admin-menu {
+	font-size: 20px;
+}
+
+.panel-title {
+	font-size: 20px;
+}
+
+.top-line {
+	background-color: gray;
+	position: relative;
+	height: 60px;
+}
+
+.navbar-brand .img-responsive {
+	width: 150px;
+	height: 50px;
+	margin-bottom: 70px;
+	margin-left: 370px;
+}
+
+.navbar-default {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#bs-example-navbar-collapse-1 {
+	font-size: 20px;
+	margin-right: 100px;
+}
+
+/* ------------------선택지 버튼------------------------- */
+.buying-selling.active {
+	background: #dcdcdc;
+}
+
+.buying-selling {
+	width: 130px;
+	padding: 10px;
+	position: relative;
+}
+
+.buying-selling-word {
+	font-size: 15px;
+	font-weight: 600;
+	margin-left: 22px;
+}
+
+.radio-dot:before, .radio-dot:after {
+	content: "";
+	display: block;
+	position: absolute;
+	background: #fff;
+	border-radius: 100%;
+}
+
+.radio-dot:before {
+	width: 20px;
+	height: 20px;
+	border: 1px solid #ccc;
+	top: 10px;
+	left: 16px;
+}
+
+.radio-dot:after {
+	width: 12px;
+	height: 12px;
+	border-radius: 100%;
+	top: 14px;
+	left: 20px;
+}
+
+.buying-selling.active .buying-selling-word {
+	color: #fff;
+}
+
+.buying-selling.active .radio-dot:after {
+	background: #ccc;
+}
+
+.buying-selling.active .radio-dot:before {
+	background: #fff;
+	border-color: #ccc;
+}
+
+.buying-selling:hover .radio-dot:before {
+	border-color: #adadad;
+}
+
+.buying-selling.active:hover .radio-dot:before {
+	border-color: #699D17;
+}
+
+.buying-selling.active .radio-dot:after {
+	background: #ccc;
+}
+
+.buying-selling:hover .radio-dot:after {
+	background: #e6e6e6;
+}
+
+.buying-selling.active:hover .radio-dot:after {
+	background: #ccc;
+}
+
+@media ( max-width : 400px) {
+	.mobile-br {
+		display: none;
+	}
+	.buying-selling {
+		width: 49%;
+		padding: 10px;
+		position: relative;
+	}
+}
+/* ------------결과 버튼 스타일------------ */
+.button {
+	border-radius: 4px;
+	background-color: #8bd1e0;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 28px;
+	padding: 20px;
+	width: 200px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.button span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.button span:after {
+	content: '\00bb';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.button:hover span {
+	padding-right: 25px;
+}
+
+.button:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(myinit)
+	function myinit() {
+		$("#btn_submit").click(select_chk)
+	}
+
+	function select_chk() {
+		if (!jQuery('input[name="mainCategory"]:checked').val()) {
+			alert('대분류 옵션을 선택해주세요.');
+			return false;
+		}
+		if (!jQuery('input[name="menBob"]:checked').val()) {
+			alert('면/밥 옵션을 선택해주세요.');
+			return false;
+		}
+		if (!jQuery('input[name="soup"]:checked').val()) {
+			alert('국물 옵션을 선택해주세요.');
+			return false;
+		}
+		if (!jQuery('input[name="meat"]:checked').val()) {
+			alert('고기 옵션을 선택해주세요.');
+			return false;
+		}
+		if (!jQuery('input[name="seafood"]:checked').val()) {
+			alert('해산물 옵션을 선택해주세요.');
+			return false;
+		}
+		if (!jQuery('input[name="spicy"]:checked').val()) {
+			alert('맵기 옵션을 선택해주세요.');
+			return false;
+		}
+		if (!jQuery('input[name="hot"]:checked').val()) {
+			alert('온도 옵션을 선택해주세요.');
+			return false;
+		}
+
+	}
+
+	$(document).ready(function() {
+		var navItems = $('.admin-menu li > a');
+		var navListItems = $('.admin-menu li');
+		var allWells = $('.admin-content');
+		var allWellsExceptFirst = $('.admin-content:not(:first)');
+		allWellsExceptFirst.hide();
+		navItems.click(function(e) {
+			e.preventDefault();
+			navListItems.removeClass('active');
+			$(this).closest('li').addClass('active');
+			allWells.hide();
+			var target = $(this).attr('data-target-id');
+			$('#' + target).show();
+		});
+	});
+</script>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="contain">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<div class="navbar-brand">
+					<a href="index.jsp"><img src="./img/siccha.png"
+						class="img-responsive" /></a>
+				</div>
+			</div>
+
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					
+					<li><a href="myPage.jsp">마이페이지</a></li>
+					<li><a href="Board.do?action=list.jsp">문의게시판</a></li>
+					<li><a href="Member.do?action=logout">로그아웃</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container" align="center">
+
+		<div class="row">
+
+			<!------------ 메뉴 선정 페이지 ------------>
+			<form action="Matching.do?action=matching" method="post">
+				<div class="col-md-9  admin-content" id="select" align="center">
+					<div class="panel panel-info" style="margin: 1em;">
+						<div class="panel-heading" align="center">
+							<h3 class="panel-title">대분류</h3>
+						</div>
+
+						<div class="panel-body" align="center">
+							<div class="buying-selling-group" id="buying-selling-group"
+								data-toggle="buttons">
+								<label class="btn btn-default buying-selling"> <input
+									type="radio" name="mainCategory" value="1" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">식사류</span>
+								</label> <label class="btn btn-default buying-selling"> <input
+									type="radio" name="mainCategory" value="2" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">안주류</span>
+								</label> <label class="btn btn-default buying-selling"> <input
+									type="radio" name="mainCategory" value="3" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">간편식</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-info" style="margin: 1em;">
+						<div class="panel-heading" align="center">
+							<h3 class="panel-title">면 류 / 밥 류</h3>
+						</div>
+						<div class="panel-body" align="center">
+							<div class="buying-selling-group" id="buying-selling-group"
+								data-toggle="buttons">
+								<label class="btn btn-default buying-selling"> <input
+									type="radio" name="menBob" value="4" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">면 류</span>
+								</label> <label class="btn btn-default buying-selling"> <input
+									type="radio" name="menBob" value="5" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">밥 류</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-info" style="margin: 1em;">
+						<div class="panel-heading" align="center">
+							<h3 class="panel-title">국물 선택</h3>
+						</div>
+						<div class="panel-body" align="center">
+							<div class="buying-selling-group" id="buying-selling-group"
+								data-toggle="buttons">
+								<label class="btn btn-default buying-selling"> <input
+									type="radio" name="soup" value="6" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">국물 있음</span>
+								</label> <label class="btn btn-default buying-selling"> <input
+									type="radio" name="soup" value="7" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">국물 없음</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-info" style="margin: 1em;">
+						<div class="panel-heading" align="center">
+							<h3 class="panel-title">소재 선택</h3>
+						</div>
+						<div class="panel-body" align="center">
+							<div class="buying-selling-group" id="buying-selling-group"
+								data-toggle="buttons">
+								<label class="btn btn-default buying-selling"> <input
+									type="radio" name="meat" value="18" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">육류 포함</span>
+								</label> <label class="btn btn-default buying-selling"> <input
+									type="radio" name="meat" value="19" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">육류 제외</span>
+								</label>
+								<hr>
+							</div>
+							<div class="buying-selling-group" id="buying-selling-group"
+								data-toggle="buttons">
+								<label class="btn btn-default buying-selling"> <input
+									type="radio" name="seafood" value="16" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">해산물 포함</span>
+								</label> <label class="btn btn-default buying-selling"> <input
+									type="radio" name="seafood" value="17" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">해산물 제외</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-info" style="margin: 1em;">
+						<div class="panel-heading" align="center">
+							<h3 class="panel-title">옵션 선택</h3>
+						</div>
+						<div class="panel-body" align="center">
+							<div class="buying-selling-group" id="buying-selling-group"
+								data-toggle="buttons">
+								<label class="btn btn-default buying-selling"> <input
+									type="radio" name="spicy" value="8" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">매운맛 있음</span>
+								</label> <label class="btn btn-default buying-selling"> <input
+									type="radio" name="spicy" value="9" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">매운맛 없음</span>
+								</label>
+								<hr>
+							</div>
+							<div class="buying-selling-group" id="buying-selling-group"
+								data-toggle="buttons">
+								<label class="btn btn-default buying-selling"> <input
+									type="radio" name="hot" value="21" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">따뜻한 음식</span>
+								</label> <label class="btn btn-default buying-selling"> <input
+									type="radio" name="hot" value="20" autocomplete="off">
+									<span class="radio-dot"></span> <span
+									class="buying-selling-word">시원한 음식</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div align="center">
+						<button type="submit" class="button" id="btn_submit">
+							<span>결과 보기</span>
+						</button>
+					</div>
+					<br> <br> <br>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
